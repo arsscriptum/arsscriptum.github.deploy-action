@@ -2,13 +2,12 @@
 # it is a very light docker image.
 FROM ruby:3.3.4-slim
 LABEL author="codegp@icloud.com"
-LABEL version="1.1.2"
+LABEL version="1.1.3"
 
 
 RUN rm -rf Gemfile.lock && \
     gem install bundler:2.6.2 && \
     bundle _2.6.2_ --version && \
-    chmod -R 777 ${PWD} && \
     bundle _2.6.2_ install && \
     bundle update && \
     bundle install
