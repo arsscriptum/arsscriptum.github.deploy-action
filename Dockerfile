@@ -2,7 +2,7 @@
 # it is a very light docker image.
 FROM ruby:3.3.4-slim
 LABEL author="codegp@icloud.com"
-LABEL version="1.0.6"
+LABEL version="1.0.7"
 
 # Lets install all dependencies
 # including git and Bundler 2.5.14
@@ -24,7 +24,7 @@ RUN apt-get update && \
     chmod -R 777 ${PWD} && \
     bundle _2.6.2_ install && \
     bundle update && \
-    bundle install &&
+    bundle install && \
     bundle config --global silence_root_warning 1 && \
     apt-get clean
 
