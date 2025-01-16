@@ -2,7 +2,7 @@
 # it is a very light docker image.
 FROM ruby:3.3.4-slim
 LABEL author="codegp@icloud.com"
-LABEL version="1.0.5"
+LABEL version="1.0.6"
 
 # Lets install all dependencies
 # including git and Bundler 2.5.14
@@ -18,9 +18,15 @@ RUN apt-get update && \
     shellcheck \
     libffi7 \
     git-all \
-    && gem install bundler:2.5.14 \
-    && bundle config --global silence_root_warning 1 \
-    && apt-get clean
+    rm -rf Gemfile.lock && \
+    gem install bundler:2.6.2 && \
+    bundle _2.6.2_ --version && \
+    chmod -R 777 ${PWD} && \
+    bundle _2.6.2_ install && \
+    bundle update && \
+    bundle install &&
+    bundle config --global silence_root_warning 1 && \
+    apt-get clean
 
 # This is our entrypoint to our custom scripts
 # more about that in a sec
